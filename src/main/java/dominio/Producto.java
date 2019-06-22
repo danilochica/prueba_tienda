@@ -2,6 +2,7 @@ package dominio;
 
 public class Producto {
 
+	private static final int NUMERO_VOCALES_PARA_NO_APLICAR_GARANTIA_EXTENDIDA = 3;
 	private String codigo;
 	private String nombre;
 	private double precio;
@@ -23,6 +24,26 @@ public class Producto {
 
 	public double getPrecio() {
 		return precio;
+	}
+
+	public int contarVocales() {
+		int cantidadVocales = 0;
+		for (int i = 0; i < codigo.length(); i++) {
+			char letra = Character.toUpperCase(codigo.charAt(i));
+
+			if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U') {
+				cantidadVocales++;
+			}
+		}
+		return cantidadVocales;
+	}
+
+	public boolean aplicaGarantiaExtendida() {
+		boolean result = false;
+		if (contarVocales() != NUMERO_VOCALES_PARA_NO_APLICAR_GARANTIA_EXTENDIDA) {
+			result = true;
+		}
+		return result;
 	}
 
 }
