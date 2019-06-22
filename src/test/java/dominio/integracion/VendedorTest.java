@@ -50,7 +50,7 @@ public class VendedorTest {
 		Vendedor vendedor = new Vendedor(repositorioProducto, repositorioGarantia);
 
 		// act
-		vendedor.generarGarantia(producto.getCodigo());
+		vendedor.generarGarantia(producto.getCodigo(),"Danilo Chica");
 
 		// assert
 		Assert.assertTrue(vendedor.tieneGarantia(producto.getCodigo()));
@@ -69,10 +69,10 @@ public class VendedorTest {
 		Vendedor vendedor = new Vendedor(repositorioProducto, repositorioGarantia);
 
 		// act
-		vendedor.generarGarantia(producto.getCodigo());;
+		vendedor.generarGarantia(producto.getCodigo(),"Danilo Chica");;
 		try {
 			
-			vendedor.generarGarantia(producto.getCodigo());
+			vendedor.generarGarantia(producto.getCodigo(),"Danilo Chica");
 			fail();
 			
 		} catch (GarantiaExtendidaException e) {
