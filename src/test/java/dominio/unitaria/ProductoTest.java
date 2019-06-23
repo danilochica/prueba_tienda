@@ -2,6 +2,7 @@ package dominio.unitaria;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -89,17 +90,50 @@ public class ProductoTest {
 	}
 	
 	@Test
-	public void testCuandoNumeroDeVocalesEsTres() {
+	public void testAplicaGarantiaCuandoNumeroDeVocalesEsIgualATres() {
 		//Arrange
-		Producto producto = Mockito.mock(Producto.class);
-		Mockito.when(producto.contarVocales()).thenReturn(3);
+		ProductoTestDataBuilder builder = new ProductoTestDataBuilder();
+		Producto producto = builder.build();
+		Producto productoSpy = Mockito.spy(producto);
+		Mockito.doReturn(3).when(productoSpy).contarVocales();
 		
 		//Act
-		boolean result = producto.aplicaGarantiaExtendida();
+		boolean result = productoSpy.aplicaGarantiaExtendida();
 		
 		//Assert
 		assertFalse(result);
 	}
+	
+	@Test
+	public void testAplicaGarantiaCuandoNumeroDeVocalesEsMenorATres() {
+		//Arrange
+		ProductoTestDataBuilder builder = new ProductoTestDataBuilder();
+		Producto producto = builder.build();
+		Producto productoSpy = Mockito.spy(producto);
+		Mockito.doReturn(2).when(productoSpy).contarVocales();
+		
+		//Act
+		boolean result = productoSpy.aplicaGarantiaExtendida();
+		
+		//Assert
+		assertTrue(result);
+	}
+	
+	@Test
+	public void testAplicaGarantiaCuandoNumeroDeVocalesEsCinco() {
+		//Arrange
+		ProductoTestDataBuilder builder = new ProductoTestDataBuilder();
+		Producto producto = builder.build();
+		Producto productoSpy = Mockito.spy(producto);
+		Mockito.doReturn(5).when(productoSpy).contarVocales();
+		
+		//Act
+		boolean result = productoSpy.aplicaGarantiaExtendida();
+		
+		//Assert
+		assertTrue(result);
+	}
+
 
 
 }

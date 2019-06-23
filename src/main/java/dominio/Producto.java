@@ -39,11 +39,13 @@ public class Producto {
 	}
 
 	public boolean aplicaGarantiaExtendida() {
-		boolean result = false;
-		if (contarVocales() != NUMERO_VOCALES_PARA_NO_APLICAR_GARANTIA_EXTENDIDA) {
-			result = true;
+		int vocales = contarVocales();
+		if (vocales != NUMERO_VOCALES_PARA_NO_APLICAR_GARANTIA_EXTENDIDA) {
+			return true;
+		} else {
+			return false;
 		}
-		return result;
+		
 	}
 
 }
